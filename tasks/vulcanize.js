@@ -10,14 +10,15 @@
 
 module.exports = function(grunt) {
 
+  var vulcanize = require('vulcanize');
   // Please see the Grunt documentation for more information regarding task
   // creation: http://gruntjs.com/creating-tasks
 
   grunt.registerMultiTask('vulcanize', 'Your task description goes here.', function() {
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
-      punctuation: '.',
-      separator: ', '
+      csp: false,
+      inline: false
     });
 
     // Iterate over all specified file groups.
@@ -31,19 +32,20 @@ module.exports = function(grunt) {
         } else {
           return true;
         }
-      }).map(function(filepath) {
-        // Read file source.
-        return grunt.file.read(filepath);
-      }).join(grunt.util.normalizelf(options.separator));
+      });
 
       // Handle options.
-      src += options.punctuation;
+      options.input = src[0];
+      options.output = f.dest;
 
-      // Write the destination file.
-      grunt.file.write(f.dest, src);
+      if (vulcanize.setOptions(options)) {
+        vulcanize.processDocument();
+        grunt.log.ok();
+        grunt.verbose.writeln('wrote %s', f.dest + (!options.csp ? '' : ' and ' + f.dest.replace('.html', '.js')));
+      } else {
+        grunt.fatal('No file given to vulcanize!');
+      }
 
-      // Print a success message.
-      grunt.log.writeln('File "' + f.dest + '" created.');
     });
   });
 
