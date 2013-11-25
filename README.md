@@ -37,53 +37,56 @@ grunt.initConfig({
 
 ### Options
 
-#### options.separator
-Type: `String`
-Default value: `',  '`
+#### options.csp
+Type: `Boolean`
+Default value: `false`
 
-A string value that is used to do something with whatever.
+Extract inline `<script>` blocks into a separate file. Maps directly to https://github.com/Polymer/vulcanize#content-security-policy
 
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
+#### options.inline
+Type: `Boolean`
+Default value: `false`
 
-A string value that is used to do something else with whatever else.
+The opposite of `csp` mode: inline all scripts and stylesheets.
 
 ### Usage Examples
 
 #### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+In this example, the default options are used to vulcanize `index.html` into `build.html`.
+
+Please see https://github.com/Polymer/vulcanize#example for more information.
 
 ```js
 grunt.initConfig({
   vulcanize: {
     options: {},
     files: {
-      'dest/default_options': ['src/testing', 'src/123'],
+      'build.html': 'index.html'
     },
   },
 })
 ```
 
 #### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
+In this example, custom options are used to apply [Content Security Policy](http://en.wikipedia.org/wiki/Content_Security_Policy) settings on the vulcanization of `index.html` into `build-csp.html`.
+
+Please see https://github.com/Polymer/vulcanize#content-security-policy for more information
 
 ```js
 grunt.initConfig({
   vulcanize: {
     options: {
-      separator: ': ',
-      punctuation: ' !!!',
+      csp: true
     },
     files: {
-      'dest/default_options': ['src/testing', 'src/123'],
+      'build-csp.html': 'index.html'
     },
   },
 })
 ```
 
 ## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
+Contributions to this project must follow the guidlines of the [Contributor License Agreement](https://github.com/Polymer/polymer/blob/master/CONTRIBUTING.md)
 
 ## Release History
 _(Nothing yet)_
