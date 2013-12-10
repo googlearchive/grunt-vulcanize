@@ -3,23 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <title>Vulcanizer Test</title>
-  <script src="../../fixtures/bower_components/platform/platform.js"></script>
+  <script src="../../test/fixtures/bower_components/platform/platform.js"></script>
   
   
 <link rel="import" href="http://example.com/foo/bar.html">
 <link rel="import" href="/foo/bar.html">
-<link rel="import" href="../../fixtures/bower_components/polymer/polymer.html">
+<link rel="import" href="../../test/fixtures/bower_components/polymer/polymer.html">
 </head>
 <body>
 
 
 
 
-<polymer-element name="y-import" assetpath="../../fixtures/sub-import/">
+<polymer-element name="y-import" assetpath="../../test/fixtures/sub-import/">
   <template>
     <style>
       :host{
-        background: url(../../fixtures/foo.jpg);
+        background: url(../../test/fixtures/foo.jpg);
       }
     </style>
   </template>
@@ -30,7 +30,7 @@
 
 
 
-<polymer-element name="x-import" assetpath="../../fixtures/">
+<polymer-element name="x-import" assetpath="../../test/fixtures/">
   <template>
   <style>@host {
   * {
