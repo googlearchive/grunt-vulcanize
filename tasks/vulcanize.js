@@ -14,11 +14,14 @@ module.exports = function(grunt) {
   // Please see the Grunt documentation for more information regarding task
   // creation: http://gruntjs.com/creating-tasks
 
-  grunt.registerMultiTask('vulcanize', 'Your task description goes here.', function() {
+  grunt.registerMultiTask('vulcanize', 'Inline HTML Imports', function() {
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
       csp: false,
-      inline: false
+      inline: false,
+      excludes: {
+        imports: []
+      }
     });
 
     // Iterate over all specified file groups.

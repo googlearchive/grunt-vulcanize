@@ -49,6 +49,14 @@ Default value: `false`
 
 The opposite of `csp` mode: inline all scripts and stylesheets.
 
+#### options.excludues.imports
+Type: `Array[String]`
+Default value: `[]`
+
+An array of strings that will be used as `RegExp`s to filter matching imports from vulcanization.
+This option should be used if multiple vulcanizations would share imports, as they could no longer be deduplicated in
+their vulcanized forms.
+
 ### Usage Examples
 
 #### Default Options
@@ -77,6 +85,11 @@ grunt.initConfig({
   vulcanize: {
     options: {
       csp: true
+      excludes: {
+        inports: [
+          "polymer.html"
+        ]
+      }
     },
     files: {
       'build-csp.html': 'index.html'
