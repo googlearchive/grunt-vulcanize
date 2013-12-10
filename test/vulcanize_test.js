@@ -27,22 +27,43 @@ exports.vulcanize = {
     // setup here if necessary
     done();
   },
-  default_options: function(test) {
+  default: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('tmp/default_options');
-    var expected = grunt.file.read('test/expected/default_options');
-    test.equal(actual, expected, 'should describe what the default behavior is.');
+    var actual = grunt.file.read('tmp/default/vulcanized.html');
+    var expected = grunt.file.read('test/expected/default/vulcanized.html');
+    test.equal(actual, expected);
 
     test.done();
   },
-  custom_options: function(test) {
-    test.expect(1);
+  csp: function(test) {
+    test.expect(2);
 
-    var actual = grunt.file.read('tmp/custom_options');
-    var expected = grunt.file.read('test/expected/custom_options');
-    test.equal(actual, expected, 'should describe what the custom option(s) behavior is.');
+    var actual_html = grunt.file.read('tmp/csp/vulcanized.html');
+    var actual_js = grunt.file.read('tmp/csp/vulcanized.js');
+    var expected_html = grunt.file.read('test/expected/csp/vulcanized.html');
+    var expected_js = grunt.file.read('test/expected/csp/vulcanized.js');
+    test.equal(actual_html, expected_html);
+    test.equal(actual_js, expected_js);
 
     test.done();
   },
+  inline: function(test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('tmp/inline/vulcanized.html');
+    var expected = grunt.file.read('test/expected/inline/vulcanized.html');
+    test.equal(actual, expected);
+
+    test.done();
+  },
+  excludes: function(test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('tmp/excludes/vulcanized.html');
+    var expected = grunt.file.read('test/expected/excludes/vulcanized.html');
+    test.equal(actual, expected);
+
+    test.done();
+  }
 };

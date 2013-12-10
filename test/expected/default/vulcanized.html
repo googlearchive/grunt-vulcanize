@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vulcanizer Test</title>
+  <script src="../../fixtures/bower_components/platform/platform.js"></script>
+  
+  
+<link rel="import" href="http://example.com/foo/bar.html">
+<link rel="import" href="/foo/bar.html">
+</head>
+<body>
+
+
+
+<!--
+ Copyright 2013 The Polymer Authors. All rights reserved.
+ Use of this source code is governed by a BSD-style
+ license that can be found in the LICENSE file.
+-->
+<script src="../../fixtures/bower_components/polymer/polymer.js"></script>
+<!-- <link rel="import" href="../polymer-dev/polymer.html"> -->
+
+<polymer-element name="y-import" assetpath="../../fixtures/sub-import/">
+  <template>
+    <style>
+      :host{
+        background: url(../../fixtures/foo.jpg);
+      }
+    </style>
+  </template>
+  <script>
+    Polymer('y-import');
+  </script>
+</polymer-element>
+
+
+
+<polymer-element name="x-import" assetpath="../../fixtures/">
+  <template>
+  <style>@host {
+  * {
+    background: orange;
+  }
+}
+</style>
+    [Imported: <content></content>]
+  </template>
+  <script>
+    Polymer('x-import');
+  </script>
+</polymer-element>
+
+  <x-import>Hello Import!</x-import>
+  <y-import></y-import>
+</body>
+</html>

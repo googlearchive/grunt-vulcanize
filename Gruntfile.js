@@ -30,22 +30,39 @@ module.exports = function(grunt) {
 
     // Configuration to be run (and then tested).
     vulcanize: {
-      default_options: {
+      default: {
         options: {
         },
         files: {
-          'tmp/default_options': ['test/fixtures/testing', 'test/fixtures/123'],
+          'tmp/default/vulcanized.html': ['test/fixtures/index.html'],
         },
       },
-      custom_options: {
+      csp: {
         options: {
-          separator: ': ',
-          punctuation: ' !!!',
+          csp: true
         },
         files: {
-          'tmp/custom_options': ['test/fixtures/testing', 'test/fixtures/123'],
+          'tmp/csp/vulcanized.html': ['test/fixtures/index.html'],
         },
       },
+      inline: {
+        options: {
+          inline: true
+        },
+        files: {
+          'tmp/inline/vulcanized.html': ['test/fixtures/index.html'],
+        }
+      },
+      excludes: {
+        options: {
+          excludes: {
+            imports: ['polymer.html']
+          }
+        },
+        files: {
+          'tmp/excludes/vulcanized.html': ['test/fixtures/index.html']
+        }
+      }
     },
 
     // Unit tests.
