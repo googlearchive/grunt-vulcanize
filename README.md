@@ -49,7 +49,7 @@ Default value: `false`
 
 The opposite of `csp` mode: inline all scripts and stylesheets.
 
-#### options.excludues.imports
+#### options.excludes.imports
 Type: `Array[String]`
 Default value: `[]`
 
