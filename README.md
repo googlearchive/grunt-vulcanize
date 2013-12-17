@@ -86,7 +86,7 @@ grunt.initConfig({
     options: {
       csp: true
       excludes: {
-        inports: [
+        imports: [
           "polymer.html"
         ]
       }
