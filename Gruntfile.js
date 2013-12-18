@@ -32,7 +32,7 @@ module.exports = function(grunt) {
     mkdir: {
       all: {
         options: {
-          create: ['tmp/default', 'tmp/csp', 'tmp/inline', 'tmp/excludes']
+          create: ['tmp/default', 'tmp/csp', 'tmp/inline', 'tmp/excludes', 'tmp/strip']
         }
       }
     },
@@ -70,6 +70,14 @@ module.exports = function(grunt) {
         },
         files: {
           'tmp/excludes/vulcanized.html': ['test/fixtures/index.html']
+        }
+      },
+      strip: {
+        options: {
+          strip: true
+        },
+        files: {
+          'tmp/strip/vulcanized.html': ['test/fixtures/index.html']
         }
       }
     },

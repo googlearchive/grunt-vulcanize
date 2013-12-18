@@ -65,5 +65,14 @@ exports.vulcanize = {
     test.equal(actual, expected);
 
     test.done();
+  },
+  strip: function(test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('tmp/strip/vulcanized.html');
+    var expected = grunt.file.read('test/expected/strip/vulcanized.html');
+    test.equal(actual, expected);
+
+    test.done();
   }
 };
