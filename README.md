@@ -55,7 +55,7 @@ Default value: `false`
 
 Strip comments and empty text nodes from output.
 
-#### options.excludues.imports
+#### options.excludes.imports
 Type: `Array[String]`
 Default value: `[]`
 
@@ -92,7 +92,7 @@ grunt.initConfig({
     options: {
       csp: true
       excludes: {
-        inports: [
+        imports: [
           "polymer.html"
         ]
       }
