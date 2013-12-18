@@ -7,7 +7,7 @@
     "test": "test"
   },
   "dependencies": {
-    "vulcanize": "~0.1.7"
+    "vulcanize": "~0.1.9"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.7.2",

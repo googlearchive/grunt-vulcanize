@@ -49,6 +49,12 @@ Default value: `false`
 
 The opposite of `csp` mode: inline all scripts and stylesheets.
 
+#### options.strip
+Type: `Boolean`
+Default value: `false`
+
+Strip comments and empty text nodes from output.
+
 #### options.excludues.imports
 Type: `Array[String]`
 Default value: `[]`

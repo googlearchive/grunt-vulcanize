@@ -19,6 +19,7 @@ module.exports = function(grunt) {
     var options = this.options({
       csp: false,
       inline: false,
+      strip: false,
       excludes: {
         imports: []
       }
