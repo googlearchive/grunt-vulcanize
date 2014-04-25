@@ -25,11 +25,13 @@ In your project's Gruntfile, add a section named `vulcanize` to the data object 
 ```js
 grunt.initConfig({
   vulcanize: {
-    options: {
-      // Task-specific options go here.
-    },
-    your_target: {
-      // Target-specific file lists and/or options go here.
+    default: {
+      options: {
+        // Task-specific options go here.
+      },
+      your_target: {
+        // Target-specific file lists and/or options go here.
+      },
     },
   },
 })
@@ -73,9 +75,11 @@ Please see https://github.com/Polymer/vulcanize#example for more information.
 ```js
 grunt.initConfig({
   vulcanize: {
-    options: {},
-    files: {
-      'build.html': 'index.html'
+    default: {
+      options: {},
+      files: {
+        'build.html': 'index.html'
+      },
     },
   },
 })
@@ -89,16 +93,18 @@ Please see https://github.com/Polymer/vulcanize#content-security-policy for more
 ```js
 grunt.initConfig({
   vulcanize: {
-    options: {
-      csp: true
-      excludes: {
-        imports: [
-          "polymer.html"
-        ]
-      }
-    },
-    files: {
-      'build-csp.html': 'index.html'
+    default: {
+      options: {
+        csp: true,
+        excludes: {
+          imports: [
+            "polymer.html"
+          ]
+        }
+      },
+      files: {
+        'build-csp.html': 'index.html'
+      },
     },
   },
 })
