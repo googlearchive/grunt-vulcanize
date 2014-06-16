@@ -29,7 +29,7 @@ grunt.initConfig({
       options: {
         // Task-specific options go here.
       },
-      your_target: {
+      files: {
         // Target-specific file lists and/or options go here.
       },
     },
