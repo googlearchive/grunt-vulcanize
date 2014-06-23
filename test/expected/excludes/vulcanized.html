@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <title>Vulcanizer Test</title>
   <script src="../../test/fixtures/bower_components/platform/platform.js"></script>
-  <link rel="import" href="http://example.com/foo/bar.html">
+  <div hidden><link rel="import" href="http://example.com/foo/bar.html">
 
 <link rel="import" href="/foo/bar.html">
-
-  <link rel="import" href="../../test/fixtures/bower_components/polymer/polymer.html">
+</div>
+  <div hidden><link rel="import" href="../../test/fixtures/bower_components/polymer/polymer.html">
 
 <polymer-element name="y-import" assetpath="../../test/fixtures/sub-import/">
   <template>
@@ -37,7 +37,7 @@
     Polymer('x-import');
   </script>
 </polymer-element>
-
+</div>
 </head>
 <body>
   <x-import>Hello Import!</x-import>
