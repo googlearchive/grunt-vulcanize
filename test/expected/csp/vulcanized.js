@@ -1,6 +1,4 @@
-
-    Polymer('y-import');
-  ;
+Polymer('y-import');;
 
     Polymer('x-import');
   
