@@ -30,6 +30,7 @@ module.exports = function(grunt) {
     });
 
     // Iterate over all specified file groups.
+    var count = this.files.length;
     this.files.forEach(function(f) {
       // Concat specified files.
       var src = f.src.filter(function(filepath) {
@@ -53,7 +54,10 @@ module.exports = function(grunt) {
         vulcanize.processDocument();
         grunt.log.ok();
         grunt.verbose.writeln('wrote %s', f.dest + (!options.csp ? '' : ' and ' + f.dest.replace('.html', '.js')));
-        done();
+        count--;
+        if (count === 0) {
+          done();
+        }
       });
 
     });
