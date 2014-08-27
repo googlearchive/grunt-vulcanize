@@ -29,6 +29,13 @@ module.exports = function(grunt) {
       }
     });
 
+    var filesCount = this.files ? this.files.length : 0;
+
+    if (filesCount <= 0) {
+      done();
+      return;
+    }
+
     // Iterate over all specified file groups.
     this.files.forEach(function(f) {
       // Concat specified files.
@@ -53,7 +60,12 @@ module.exports = function(grunt) {
         vulcanize.processDocument();
         grunt.log.ok();
         grunt.verbose.writeln('wrote %s', f.dest + (!options.csp ? '' : ' and ' + f.dest.replace('.html', '.js')));
-        done();
+
+        filesCount--;
+
+        if (filesCount <= 0) {
+          done();
+        }
       });
 
     });
