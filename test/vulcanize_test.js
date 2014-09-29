@@ -74,5 +74,18 @@ exports.vulcanize = {
     test.equal(actual, expected);
 
     test.done();
+  },
+  multiple: function(test) {
+    test.expect(2);
+
+    var actual = grunt.file.read('tmp/multiple/one.html');
+    var expected = grunt.file.read('test/expected/multiple/one.html');
+    test.equal(actual, expected);
+
+    var actual2 = grunt.file.read('tmp/multiple/two.html');
+    var expected2 = grunt.file.read('test/expected/multiple/two.html');
+    test.equal(actual2, expected2);
+
+    test.done();
   }
 };
