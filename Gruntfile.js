@@ -8,6 +8,7 @@
 
 'use strict';
 
+var path = require('path');
 module.exports = function(grunt) {
 
   // Project configuration.
@@ -32,7 +33,7 @@ module.exports = function(grunt) {
     mkdir: {
       all: {
         options: {
-          create: ['tmp/default', 'tmp/csp', 'tmp/inline', 'tmp/excludes', 'tmp/strip', 'tmp/multiple']
+          create: ['tmp/default', 'tmp/csp', 'tmp/inline', 'tmp/excludes', 'tmp/strip', 'tmp/multiple', 'tmp/abspath']
         }
       }
     },
@@ -45,6 +46,14 @@ module.exports = function(grunt) {
         files: {
           'tmp/default/vulcanized.html': ['test/fixtures/index.html'],
         },
+      },
+      abspath: {
+        options: {
+          abspath: path.resolve('test/fixtures/')
+        },
+        files: {
+          'tmp/abspath/vulcanized.html': ['test/fixtures/index.html']
+        }
       },
       csp: {
         options: {

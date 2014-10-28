@@ -87,5 +87,15 @@ exports.vulcanize = {
     test.equal(actual2, expected2);
 
     test.done();
+  },
+  abspath: function(test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('tmp/abspath/vulcanized.html');
+    var expected = grunt.file.read('test/expected/abspath/vulcanized.html');
+
+    test.equal(actual, expected);
+
+    test.done();
   }
 };

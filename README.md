@@ -64,6 +64,27 @@ An array of strings that will be used as `RegExp`s to filter matching imports fr
 This option should be used if multiple vulcanizations would share imports, as they could no longer be deduplicated in
 their vulcanized forms.
 
+#### options.excludes.scripts
+Type: `Array[String]`
+Default value: `[]`
+
+An array of strings that will be used as `RegExp`s to filter matching scripts from vulcanization.
+This option should be used if multiple vulcanizations would share scripts, as they could no longer be deduplicated in
+their vulcanized forms.
+
+#### options.excludes.styles
+Type: `Array[String]`
+Default value: `[]`
+
+An array of strings that will be used as `RegExp`s to filter matching stylesheets from vulcanization.
+This option should be used if multiple vulcanizations would share stylesheets, as they could no longer be deduplicated in their vulcanized forms.
+
+#### options.abspath
+Type: `String`
+Default value: `''`
+
+Specify a "site root". Resolve paths to absolute paths based on the site root.
+
 ### Usage Examples
 
 #### Default Options

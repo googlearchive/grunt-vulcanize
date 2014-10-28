@@ -18,6 +18,7 @@ module.exports = function(grunt) {
     var done = this.async();
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
+      abspath: null,
       config: null,
       csp: false,
       inline: false,
