@@ -85,6 +85,13 @@ Default value: `''`
 
 Specify a "site root". Resolve paths to absolute paths based on the site root.
 
+#### options['strip-excludes']
+Type: `Boolean`
+Default value: `true`
+
+By default, HTML Imports excluded from inlining are removed.
+Set this flag to keep the excluded imports in the output file.
+
 ### Usage Examples
 
 #### Default Options

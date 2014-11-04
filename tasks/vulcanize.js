@@ -23,6 +23,7 @@ module.exports = function(grunt) {
       csp: false,
       inline: false,
       strip: false,
+      'strip-excludes': true,
       excludes: {
         imports: [],
         scripts: [],

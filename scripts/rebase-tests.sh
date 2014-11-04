@@ -42,3 +42,10 @@ build -o ./one.html
 build -o ./two.html
 cp ./* ../../test/expected/multiple/
 popd
+
+pushd tmp/no-strip-excludes
+echo '{"excludes": {"imports": ["polymer.html"]}}' > config
+build --no-strip-excludes --config config
+rm config
+cp ./* ../../test/expected/no-strip-excludes/
+popd

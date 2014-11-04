@@ -97,5 +97,15 @@ exports.vulcanize = {
     test.equal(actual, expected);
 
     test.done();
+  },
+  'no-strip-excludes': function(test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('tmp/no-strip-excludes/vulcanized.html');
+    var expected = grunt.file.read('test/expected/no-strip-excludes/vulcanized.html');
+
+    test.equal(actual, expected);
+
+    test.done();
   }
 };

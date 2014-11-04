@@ -33,7 +33,7 @@ module.exports = function(grunt) {
     mkdir: {
       all: {
         options: {
-          create: ['tmp/default', 'tmp/csp', 'tmp/inline', 'tmp/excludes', 'tmp/strip', 'tmp/multiple', 'tmp/abspath']
+          create: ['tmp/default', 'tmp/csp', 'tmp/inline', 'tmp/excludes', 'tmp/strip', 'tmp/multiple', 'tmp/abspath', 'tmp/no-strip-excludes']
         }
       }
     },
@@ -93,6 +93,17 @@ module.exports = function(grunt) {
         files: {
           'tmp/multiple/one.html': ['test/fixtures/index.html'],
           'tmp/multiple/two.html': ['test/fixtures/index.html']
+        }
+      },
+      'no-strip-excludes': {
+        options: {
+          'strip-excludes': false,
+          excludes: {
+            imports: ['polymer.html']
+          }
+        },
+        files: {
+          'tmp/no-strip-excludes/vulcanized.html': ['test/fixtures/index.html']
         }
       }
     },

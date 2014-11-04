@@ -1,13 +1,13 @@
 {
   "name": "grunt-vulcanize",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "description": "Grunt plugin for Polymer's Vulcanize",
   "main": "Gruntfile.js",
   "directories": {
     "test": "test"
   },
   "dependencies": {
-    "vulcanize": "^0.5.0"
+    "vulcanize": "^0.6.0"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
