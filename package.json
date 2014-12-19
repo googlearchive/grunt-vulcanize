@@ -7,7 +7,7 @@
     "test": "test"
   },
   "dependencies": {
-    "vulcanize": "^0.7.2"
+    "vulcanize": "0.7.5"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
