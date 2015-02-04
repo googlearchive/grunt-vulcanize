@@ -7,12 +7,12 @@
     "test": "test"
   },
   "dependencies": {
-    "vulcanize": "0.7.5"
+    "vulcanize": "0.7.7"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-clean": "^0.6.0",
-    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-jshint": "^0.11.0",
     "grunt-contrib-nodeunit": "^0.4.1",
     "grunt-mkdir": "~0.1.1"
   },
