@@ -11,6 +11,8 @@
 module.exports = function(grunt) {
 
   var vulcanize = require('vulcanize');
+  var fileSystem = require('fs');
+
   // Please see the Grunt documentation for more information regarding task
   // creation: http://gruntjs.com/creating-tasks
 
@@ -18,17 +20,14 @@ module.exports = function(grunt) {
     var done = this.async();
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
-      abspath: null,
-      config: null,
-      csp: false,
-      inline: false,
-      strip: false,
-      'strip-excludes': true,
-      excludes: {
-        imports: [],
-        scripts: [],
-        styles: []
-      }
+      abspath: '',
+      excludes: [
+      ],
+      stripExcludes: false,
+      inlineScripts: false,
+      inlineCss: false,
+      implicitStrip: true,
+      stripComments: false
     });
 
     var filesCount = this.files ? this.files.length : 0;
@@ -52,16 +51,21 @@ module.exports = function(grunt) {
       });
 
       // Handle options.
-      options.input = src[0];
       options.output = f.dest;
 
-      vulcanize.setOptions(options, function(err) {
+      vulcanize.setOptions(options);
+
+      vulcanize.process(src[0], function(err, inlinedHtml) {
+
         if (err) {
           return grunt.fatal(err);
         }
-        vulcanize.processDocument();
+
         grunt.log.ok();
-        grunt.verbose.writeln('wrote %s', f.dest + (!options.csp ? '' : ' and ' + f.dest.replace('.html', '.js')));
+
+        var target = fileSystem.openSync(f.dest, 'w');
+        fileSystem.writeSync(target, inlinedHtml);
+        fileSystem.closeSync(target);
 
         filesCount--;
 

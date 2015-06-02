@@ -1,6 +1,6 @@
 # grunt-vulcanize
 
-> Grunt task for Polymer's Vulcanize
+> Grunt task for Polymer's Vulcanize. Compatible with Polymer 1.0
 
 ## Getting Started
 
@@ -38,59 +38,47 @@ grunt.initConfig({
 
 ### Options
 
-#### options.csp
-Type: `Boolean`
-Default value: `false`
-
-Extract inline `<script>` blocks into a separate file. Maps directly to https://github.com/Polymer/vulcanize#content-security-policy
-
-#### options.inline
-Type: `Boolean`
-Default value: `false`
-
-The opposite of `csp` mode: inline all scripts and stylesheets.
-
-#### options.strip
-Type: `Boolean`
-Default value: `false`
-
-Strip comments and empty text nodes from output.
-
-#### options.excludes.imports
-Type: `Array[String]`
-Default value: `[]`
-
-An array of strings that will be used as `RegExp`s to filter matching imports from vulcanization.
-This option should be used if multiple vulcanizations would share imports, as they could no longer be deduplicated in
-their vulcanized forms.
-
-#### options.excludes.scripts
-Type: `Array[String]`
-Default value: `[]`
-
-An array of strings that will be used as `RegExp`s to filter matching scripts from vulcanization.
-This option should be used if multiple vulcanizations would share scripts, as they could no longer be deduplicated in
-their vulcanized forms.
-
-#### options.excludes.styles
-Type: `Array[String]`
-Default value: `[]`
-
-An array of strings that will be used as `RegExp`s to filter matching stylesheets from vulcanization.
-This option should be used if multiple vulcanizations would share stylesheets, as they could no longer be deduplicated in their vulcanized forms.
-
 #### options.abspath
 Type: `String`
-Default value: `''`
+Default value: ``
 
-Specify a "site root". Resolve paths to absolute paths based on the site root.
+A folder to treat as "webroot". When specified, use an absolute path to target.
 
-#### options['strip-excludes']
+#### options.excludes
+Type: `Array[String]`
+Default value: `[]`
+
+An array of RegExp objects to exclude paths from being inlined.
+
+#### options.stripExcludes
 Type: `Boolean`
-Default value: `true`
+Default value: `false`
 
-By default, HTML Imports excluded from inlining are removed.
-Set this flag to keep the excluded imports in the output file.
+Remove paths that were excluded by the regexes in excludes.
+
+#### options.inlineScripts
+Type: `Boolean`
+Default value: `false`
+
+Inline external scripts.
+
+#### options.inlineCss
+Type: `Boolean`
+Default value: `false`
+
+Inline external stylesheets.
+
+#### options.stripComments
+Type: `Boolean`
+Default value: `false`
+
+Remove non-license HTML comments.
+
+#### options.loader
+Type: `Hydrolysis loader`
+Default value: ``
+
+A hydrolysis loader. This loader is generated with the target argument to vulcan.process and the exclude paths. A custom loader can be given if more advanced setups are necesssary.
 
 ### Usage Examples
 
@@ -113,21 +101,24 @@ grunt.initConfig({
 ```
 
 #### Custom Options
-In this example, custom options are used to apply [Content Security Policy](http://en.wikipedia.org/wiki/Content_Security_Policy) settings on the vulcanization of `index.html` into `build-csp.html`.
-
-Please see https://github.com/Polymer/vulcanize#content-security-policy for more information
+Please see https://github.com/Polymer/vulcanize for more information
 
 ```js
 grunt.initConfig({
   vulcanize: {
     default: {
       options: {
-        csp: true,
+        abspath: '',
         excludes: {
-          imports: [
-            "polymer.html"
-          ]
-        }
+                imports: [
+                  "polymer.html"
+                ]
+              }
+        stripExcludes: false,
+        inlineScripts: false,
+        inlineCss: false,
+        implicitStrip: true,
+        stripComments: false
       },
       files: {
         'build-csp.html': 'index.html'
@@ -137,8 +128,6 @@ grunt.initConfig({
 })
 ```
 
-## Contributing
-Contributions to this project must follow the guidlines of the [Contributor License Agreement](https://github.com/Polymer/polymer/blob/master/CONTRIBUTING.md)
-
-## Release History
-_(Nothing yet)_
+## What happened to [feature] from 0.X?
+- `--csp` mode has been moved into [crisper](https://github.com/PolymerLabs/crisper)
+- `--strip` mode was removed, use something like [html-minifier](https://github.com/kangax/html-minifier) or [minimize](https://github.com/Moveo/minimize)
