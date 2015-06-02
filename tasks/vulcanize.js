@@ -61,11 +61,11 @@ module.exports = function(grunt) {
           return grunt.fatal(err);
         }
 
-        grunt.log.ok();
-
         var target = fileSystem.openSync(f.dest, 'w');
         fileSystem.writeSync(target, inlinedHtml);
         fileSystem.closeSync(target);
+
+        grunt.log.ok(src[0] + " -> " + f.dest);
 
         filesCount--;
 
