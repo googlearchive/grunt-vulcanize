@@ -51,10 +51,11 @@ Default value: `[]`
 An array of RegExp objects to exclude paths from being inlined.
 
 #### options.stripExcludes
-Type: `Boolean`
-Default value: `false`
+Type: `Array[String]`
+Default value: `[]`
 
-Remove paths that were excluded by the regexes in excludes.
+An array of RegExp objects to exclude paths from being inlined and strip them
+from the output file.
 
 #### options.inlineScripts
 Type: `Boolean`
@@ -79,6 +80,12 @@ Type: `Hydrolysis loader`
 Default value: ``
 
 A hydrolysis loader. This loader is generated with the target argument to vulcan.process and the exclude paths. A custom loader can be given if more advanced setups are necesssary.
+
+#### options.csp
+Type: `String`
+Default Value: ``
+
+Filename for a separate JS file to be [CSP](https://developer.mozilla.org/en-US/docs/Web/Security/CSP) compliant, uses [crisper](https://github.com/PolymerLabs/crisper)
 
 ### Usage Examples
 
@@ -109,16 +116,11 @@ grunt.initConfig({
     default: {
       options: {
         abspath: '',
-        excludes: {
-                imports: [
-                  "polymer.html"
-                ]
-              }
-        stripExcludes: false,
-        inlineScripts: false,
-        inlineCss: false,
-        implicitStrip: true,
-        stripComments: false
+        excludes: ["/path/to/polymer.html"]
+        inlineScripts: true,
+        inlineCss: true,
+        stripComments: true,
+        csp: "build-csp.js"
       },
       files: {
         'build-csp.html': 'index.html'

@@ -10,8 +10,9 @@
 
 module.exports = function(grunt) {
 
-  var vulcanize = require('vulcanize');
+  var Vulcanize = require('vulcanize');
   var fileSystem = require('fs');
+  var path = require('path');
 
   // Please see the Grunt documentation for more information regarding task
   // creation: http://gruntjs.com/creating-tasks
@@ -23,11 +24,14 @@ module.exports = function(grunt) {
       abspath: '',
       excludes: [
       ],
-      stripExcludes: false,
+      stripExcludes: [
+      ],
+      targetUrl: '',
       inlineScripts: false,
       inlineCss: false,
       implicitStrip: true,
-      stripComments: false
+      stripComments: false,
+      csp: ''
     });
 
     var filesCount = this.files ? this.files.length : 0;
@@ -42,7 +46,7 @@ module.exports = function(grunt) {
       // Concat specified files.
       var src = f.src.filter(function(filepath) {
         // Warn on and remove invalid source files (if nonull was set).
-        if (!grunt.file.exists(filepath)) {
+        if (!options.abspath && !grunt.file.exists(filepath)) {
           grunt.log.warn('Source file "' + filepath + '" not found.');
           return false;
         } else {
@@ -51,14 +55,23 @@ module.exports = function(grunt) {
       });
 
       // Handle options.
-      options.output = f.dest;
+      var vulcan = new Vulcanize(options);
 
-      vulcanize.setOptions(options);
-
-      vulcanize.process(src[0], function(err, inlinedHtml) {
+      vulcan.process(options.targetUrl || src[0], function(err, inlinedHtml) {
 
         if (err) {
           return grunt.fatal(err);
+        }
+
+        if (options.csp) {
+          var crisper = require('crisper');
+          var cspPath = path.resolve(path.dirname(f.dest), options.csp);
+          var out = crisper.split(inlinedHtml, options.csp);
+          inlinedHtml = out.html;
+          var cspTarget = fileSystem.openSync(cspPath, 'w');
+          fileSystem.writeSync(cspTarget, out.js);
+          fileSystem.closeSync(cspTarget);
+          grunt.log.ok(src[0] + " -> " + cspPath);
         }
 
         var target = fileSystem.openSync(f.dest, 'w');

@@ -41,15 +41,15 @@ module.exports = function(grunt) {
     // Configuration to be run (and then tested).
     vulcanize: {
       default: {
-        options: {
-        },
         files: {
           'tmp/default/vulcanized.html': ['test/fixtures/index.html'],
         },
       },
       abspath: {
         options: {
-          abspath: path.resolve('test/fixtures/')
+          abspath: 'test/fixtures',
+          nonull: true,
+          targetUrl: '/index.html'
         },
         files: {
           'tmp/abspath/vulcanized.html': ['test/fixtures/index.html']
@@ -57,7 +57,7 @@ module.exports = function(grunt) {
       },
       csp: {
         options: {
-          csp: true
+          csp: 'vulcanized.js'
         },
         files: {
           'tmp/csp/vulcanized.html': ['test/fixtures/index.html'],
@@ -65,7 +65,8 @@ module.exports = function(grunt) {
       },
       inline: {
         options: {
-          inline: true
+          inlineScripts: true,
+          inlineCss: true
         },
         files: {
           'tmp/inline/vulcanized.html': ['test/fixtures/index.html'],
@@ -73,9 +74,7 @@ module.exports = function(grunt) {
       },
       excludes: {
         options: {
-          excludes: {
-            imports: ['polymer.html']
-          }
+          excludes: ['test/fixtures/bower_components/polymer/polymer.html']
         },
         files: {
           'tmp/excludes/vulcanized.html': ['test/fixtures/index.html']
@@ -83,7 +82,7 @@ module.exports = function(grunt) {
       },
       strip: {
         options: {
-          strip: true
+          stripComments: true
         },
         files: {
           'tmp/strip/vulcanized.html': ['test/fixtures/index.html']
@@ -97,10 +96,8 @@ module.exports = function(grunt) {
       },
       'no-strip-excludes': {
         options: {
-          'strip-excludes': false,
-          excludes: {
-            imports: ['polymer.html']
-          }
+          implicitStrip: false,
+          excludes: ['polymer.html']
         },
         files: {
           'tmp/no-strip-excludes/vulcanized.html': ['test/fixtures/index.html']

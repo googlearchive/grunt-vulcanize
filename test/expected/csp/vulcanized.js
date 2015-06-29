@@ -1,4 +1,6 @@
-Polymer('y-import');;
-
-    Polymer('x-import');
+Polymer({is: 'y-import'});
+;
+    Polymer({
+      is: 'x-import'
+    });
   
