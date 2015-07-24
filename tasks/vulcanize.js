@@ -11,7 +11,6 @@
 module.exports = function(grunt) {
 
   var Vulcanize = require('vulcanize');
-  var fileSystem = require('fs');
   var path = require('path');
 
   // Please see the Grunt documentation for more information regarding task
@@ -68,15 +67,11 @@ module.exports = function(grunt) {
           var cspPath = path.resolve(path.dirname(f.dest), options.csp);
           var out = crisper.split(inlinedHtml, options.csp);
           inlinedHtml = out.html;
-          var cspTarget = fileSystem.openSync(cspPath, 'w');
-          fileSystem.writeSync(cspTarget, out.js);
-          fileSystem.closeSync(cspTarget);
+          grunt.file.write(cspPath, out.js);
           grunt.log.ok(src[0] + " -> " + cspPath);
         }
 
-        var target = fileSystem.openSync(f.dest, 'w');
-        fileSystem.writeSync(target, inlinedHtml);
-        fileSystem.closeSync(target);
+        grunt.file.write(f.dest, inlinedHtml);
 
         grunt.log.ok(src[0] + " -> " + f.dest);
 
